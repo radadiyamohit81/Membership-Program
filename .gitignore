@@ -1,0 +1,19 @@
+# Maven build output – generated on every build, never commit this
+target/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.class
+
+# macOS metadata
+.DS_Store
+
+# Spring Boot logs
+*.log
+
+# Local environment overrides
+*.env
+application-local.yml
+*.zip

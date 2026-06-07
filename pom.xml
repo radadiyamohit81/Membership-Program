@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Spring Boot's parent — manages all library versions for you -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.1</version>
+        <relativePath/>
+    </parent>
+
+    <!-- Your project identity (like a unique address for this module) -->
+    <groupId>com.firstclub</groupId>       <!-- organisation/package name -->
+    <artifactId>firstclub</artifactId>     <!-- project/module name -->
+    <version>0.0.1-SNAPSHOT</version>     <!-- SNAPSHOT = still in development, not released -->
+    <name>FirstClub Membership Service</name>
+    <packaging>jar</packaging>             <!-- output: a runnable JAR file -->
+
+    <properties>
+        <!-- Compile to Java 21 bytecode even when running on Java 25 -->
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <!-- Ensures all source files are read/written in UTF-8 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- REST API support + embedded Tomcat server + Jackson (Java <-> JSON) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- ORM: talk to DB using Java objects via Hibernate + JpaRepository -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- H2 in-memory DB: zero setup for dev/testing, swap to PostgreSQL later -->
+        <!-- scope=runtime: only needed when app runs, not at compile time -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Bean validation: @NotNull, @Min, @Max, @Email on request bodies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+
+        <!-- JUnit 5 + Mockito + Spring Test support for unit/integration tests -->
+        <!-- scope=test: only available during test execution, not packaged in JAR -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Swagger UI — compatible with Spring Boot 3.4.x -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Packages app as a runnable fat JAR and enables: mvn spring-boot:run -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
